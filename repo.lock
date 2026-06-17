@@ -1,0 +1,31 @@
+PLANX ADMIN REPOSITORY LOCK
+
+# Authority
+- docs/architecture.md — Architectural truth
+- AI.md — AI behavioral rules
+- README.md — Developer setup
+
+# Scope
+React/TypeScript read-only admin monitoring panel for Planx 4.0.
+Reads pipeline status, executions, plugin stats, and system health.
+Does NOT execute pipelines or modify engine state.
+
+# Source directories (immutable)
+- src/api/              — Control Plane API client
+- src/components/
+  - dashboard/          — Summary cards + recent executions
+  - executions/         — Paginated table + status filter
+  - pipelines/          — Expandable table + drill-down
+  - plugins/            — Card grid + pool usage bars
+- src/hooks/            — TanStack Query hooks
+- src/stores/           — Zustand UI state (tab, tenant)
+- src/types/            — API response types
+- src/styles/           — Global CSS (Dark Mode OLED)
+
+# Monorepo rule
+All source code lives in src/. No package splitting.
+
+# Forbidden
+- Must NOT import from planx-engine, planx-sdk-*, or planx-plugin-*
+- Must NOT add write endpoints to the engine
+- Must NOT execute pipelines or modify engine configuration
